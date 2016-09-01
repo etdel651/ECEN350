@@ -1,0 +1,1 @@
+This is a test to do 'git add' with a folder named 'test_git'
