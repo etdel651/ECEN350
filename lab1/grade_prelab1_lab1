@@ -1,0 +1,24 @@
+q1: doesn't explain the purpose of each field
+-6
+
+q3: no binary encoding...
+-15
+
+q5: this doesn't work at all, what are the values of x y and z? why do you
+replace the value of x with z on line 3? now the value of x is lost
+
+correct code:
+
+mov $t1 $4
+mov $4 $5
+mov $5 $t1
+
+only one extra register
+-15
+
+prelab 1: 64
+
+4.3: need math
+-5
+
+lab 1: 95
