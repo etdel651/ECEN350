@@ -7,9 +7,9 @@
         .globl my_mul
 
         main:
-#        addi $sp, $sp, -8   #make room for $ra and $fp on the stack
-#        sw $ra, 4($sp)      #push $ra
-#        sw $fp, 0($sp)      #push $fp
+       addi $sp, $sp, -8   #make room for $ra and $fp on the stack
+       sw $ra, 4($sp)      #push $ra
+       sw $fp, 0($sp)      #push $fp
 
         la $a0, msg1        #load address of msg1 into $a0
         li $v0, 4
@@ -35,10 +35,10 @@
         li $v0, 1
         syscall             #print result number
 
- #       lw $fp, 0($sp)      #restore (pop) $fp
- #       lw $ra, 4($sp)      #restore (pop) $ra
- #       addi $sp, $sp, 8    #adjust $sp
- #       jr $ra              #return
+      lw $fp, 0($sp)      #restore (pop) $fp
+      lw $ra, 4($sp)      #restore (pop) $ra
+      addi $sp, $sp, 8    #adjust $sp
+      jr $ra              #return
  
 	addi $v0,$0,10
 	syscall 
