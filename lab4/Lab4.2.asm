@@ -34,7 +34,7 @@ main:
 	syscall				#print result number
 	lw $fp, 0($sp)			#restore (pop) $fp
 	lw $ra, 4($sp)			#restore (pop) $ra
-	addi $sp, $sp, 8		#adjust $sp
+	addi $sp, $sp, 8		#adjust $spd
 	jr $ra				#return
 
 my_mul:					#multiply $a0 with $a1
