@@ -60,4 +60,8 @@ mult_eol:add $a0, $v0, $0
 	 bne $t0, $0, mult_loop
 	 lw $s0, 0($sp)			#pop $s0
 	 addi $sp, $sp, 4
+<<<<<<< HEAD
 	 jr $ra
+=======
+	 jr $ra
+>>>>>>> 74eff61161f94bfe0ec252d78d7cec03c887bb42
