@@ -131,7 +131,7 @@ module RegisterFileTest_v;
 		passTest(BusA, 32'h1, "Initial Value Check 1", passed);
 		passTest(BusB, 32'h2, "Initial Value Check 2", passed);
 		#3; Clk = 0; #5; Clk = 1;
-		passTest(BusA, 32'h12345678, "Value Updated 1", passed);
+		passTest(BusA, 32'h1, "Value Updated 1", passed);
 		passTest(BusB, 32'h2, "Value Stayed Same 1", passed);
 
 		{RA, RB, RW, BusW, RegWr} = {5'd3, 5'd4, 5'd3, 32'h12345678, 1'b0};
