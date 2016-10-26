@@ -5,6 +5,6 @@ input Ctrl;
 
 wire lastBit;
 assign #1 lastBit = (Ctrl ? 1'b0 : Imm16[15]);
-assign BusImm = {{16{lastBit}}, Imm16};
+assign BusImm = {{extBit}, Imm16};
 
 endmodule
