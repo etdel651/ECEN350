@@ -38,14 +38,14 @@ case(ALUCtrl)
 `SLL: begin BusW <= #20 BusA << BusB; end
 `SRL: begin BusW <= #20 BusA >> BusB; end
 `SUB: begin BusW <= #20 BusA - BusB; end
-`SLT: begin BusW <= #20 BusA & BusB; end
+`SLT: begin BusW <= #20 ($signed(BusA) < $signed(BusB))?1:0; end
 `ADDU: begin BusW <= #20 $unsigned(BusA) + $unsigned(BusB); end   //$unsign and $sign is if the sign is specified or not
 `SUBU: begin BusW <= #20 $unsigned(BusA) - $unsigned(BusB); end
 `XOR: begin BusW <= #20 BusA ^ BusB; end
 `SLTU: begin BusW <= #20  $unsigned(BusA) < $unsigned(BusB) ? 1: 0; end // ? is taking the place of an if else statement 
-`SRA: begin BusW <= #20 $signed(BusA) >> BusB; end
-`LUI: begin BusW <= #20 {{16{1'b0}}, BusB[15:0]}; end    //Made Bus A all zeros because we are loading the upper 16 bits
-
+`SRA: begin BusW <= #20 $signed(BusA) >>> BusB; end
+`LUI: begin BusW <= #20 {BusB[15:0],{16{1'b0}}}; end   //Made Bus A all zeros because we are loading the upper 16 bits
+`NOR: begin BusW <= #20 ~(BusA | BusB); end
             
 endcase
 

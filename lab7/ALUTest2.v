@@ -79,7 +79,7 @@ module ALUTest_v;
 		{BusA, BusB, ALUCtrl} = {32'h00000001, 32'hFFFFFFFF, 4'd6}; #40; passTest({Zero, BusW}, 33'h000000002 , "SUB 1,-1", passed);
 		{BusA, BusB, ALUCtrl} = {32'h00000001, 32'h00000001, 4'd6}; #40; passTest({Zero, BusW}, 33'h100000000 , "SUB 1,1", passed);
 		{BusA, BusB, ALUCtrl} = {32'h00000000, 32'h00000000, 4'd7}; #40; passTest({Zero, BusW}, 33'h100000000 , "SLT 0,0", passed);
-		{BusA, BusB, ALUCtrl} = {32'h00000000, 32'h00000001, 4'd7}; #40; passTest({Zero, BusW}, 33'h100000001 , "SLT 0,1", passed);
+		{BusA, BusB, ALUCtrl} = {32'h00000000, 32'h00000001, 4'd7}; #40; passTest({Zero, BusW}, 33'h000000001 , "SLT 0,1", passed);
 		{BusA, BusB, ALUCtrl} = {32'h00000000, 32'hFFFFFFFF, 4'd7}; #40; passTest({Zero, BusW}, 33'h100000000 , "SLT 0,-1", passed);
 		{BusA, BusB, ALUCtrl} = {32'h00000001, 32'h00000000, 4'd7}; #40; passTest({Zero, BusW}, 33'h100000000 , "SLT 1,0", passed);
 		{BusA, BusB, ALUCtrl} = {32'hFFFFFFFF, 32'h00000000, 4'd7}; #40; passTest({Zero, BusW}, 33'h000000001 , "SLT -1,0", passed);
@@ -89,10 +89,10 @@ module ALUTest_v;
 		{BusA, BusB, ALUCtrl} = {32'h12345678, 32'h87654321, 4'd0}; #40; passTest({Zero, BusW}, 33'h002244220 , "AND `", passed);
 		{BusA, BusB, ALUCtrl} = {32'hF0F0F0F0, 32'h0000FFFF, 4'd1}; #40; passTest({Zero, BusW}, 33'h0F0F0FFFF , "OR ", passed);
 		{BusA, BusB, ALUCtrl} = {32'h12345678, 32'h87654321, 4'd1}; #40; passTest({Zero, BusW}, 33'h097755779 , "OR ", passed);
-		{BusA, BusB, ALUCtrl} = {32'h12345678, 32'h00000002, 4'd3}; #40; passTest({Zero, BusW}, 33'h048D15E0 , "SLL 2", passed);
-		{BusA, BusB, ALUCtrl} = {32'h80000000, 32'h00000003, 4'd3}; #40; passTest({Zero, BusW}, 33'h00000000 , "SLL 3", passed);
-		{BusA, BusB, ALUCtrl} = {32'h00000001, 32'h00000003, 4'd4}; #40; passTest({Zero, BusW}, 33'h10000000 , "SRL 3", passed);
-		{BusA, BusB, ALUCtrl} = {32'h00001234, 32'h00000006, 4'd4}; #40; passTest({Zero, BusW}, 33'h00000048 , "SRL 6", passed);
+		{BusA, BusB, ALUCtrl} = {32'h12345678, 32'h00000002, 4'd3}; #40; passTest({Zero, BusW}, 33'h048D159E0 , "SLL 2", passed);
+		{BusA, BusB, ALUCtrl} = {32'h80000000, 32'h00000003, 4'd3}; #40; passTest({Zero, BusW}, 33'h100000000 , "SLL 3", passed);
+		{BusA, BusB, ALUCtrl} = {32'h00000001, 32'h00000003, 4'd4}; #40; passTest({Zero, BusW}, 33'h100000000 , "SRL 3", passed);
+		{BusA, BusB, ALUCtrl} = {32'h00001234, 32'h00000006, 4'd4}; #40; passTest({Zero, BusW}, 33'h000000048 , "SRL 6", passed);
 		
 		
 		
