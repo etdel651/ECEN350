@@ -71,8 +71,33 @@ module ALUTest_v;
 		// Add stimulus here
 		
 		//ADD YOUR TEST VECTORS FROM THE PRELAB HERE	
+		{BusA, BusB, ALUCtrl} = {32'h00000000, 32'h00000000, 4'd2}; #40; passTest({Zero, BusW}, 33'h100000000, "ADD 0,0", passed);
+		{BusA, BusB, ALUCtrl} = {32'h00000000, 32'hFFFFFFFF, 4'd2}; #40; passTest({Zero, BusW}, 33'h0FFFFFFFF , "ADD 0,-1", passed);
+		{BusA, BusB, ALUCtrl} = {32'hFFFFFFFF, 32'h00000001, 4'd2}; #40; passTest({Zero, BusW}, 33'h100000000 , "ADD -1,1", passed);
+		{BusA, BusB, ALUCtrl} = {32'h000000FF, 32'h00000001, 4'd2}; #40; passTest({Zero, BusW}, 33'h000000100 , "ADD FF,1", passed);
+		{BusA, BusB, ALUCtrl} = {32'h00000000, 32'h00000000, 4'd6}; #40; passTest({Zero, BusW}, 33'h100000000 , "SUB 0,0", passed);
+		{BusA, BusB, ALUCtrl} = {32'h00000001, 32'hFFFFFFFF, 4'd6}; #40; passTest({Zero, BusW}, 33'h000000002 , "SUB 1,-1", passed);
+		{BusA, BusB, ALUCtrl} = {32'h00000001, 32'h00000001, 4'd6}; #40; passTest({Zero, BusW}, 33'h100000000 , "SUB 1,1", passed);
+		{BusA, BusB, ALUCtrl} = {32'h00000000, 32'h00000000, 4'd7}; #40; passTest({Zero, BusW}, 33'h100000000 , "SLT 0,0", passed);
+		{BusA, BusB, ALUCtrl} = {32'h00000000, 32'h00000001, 4'd7}; #40; passTest({Zero, BusW}, 33'h100000001 , "SLT 0,1", passed);
+		{BusA, BusB, ALUCtrl} = {32'h00000000, 32'hFFFFFFFF, 4'd7}; #40; passTest({Zero, BusW}, 33'h100000000 , "SLT 0,-1", passed);
+		{BusA, BusB, ALUCtrl} = {32'h00000001, 32'h00000000, 4'd7}; #40; passTest({Zero, BusW}, 33'h100000000 , "SLT 1,0", passed);
+		{BusA, BusB, ALUCtrl} = {32'hFFFFFFFF, 32'h00000000, 4'd7}; #40; passTest({Zero, BusW}, 33'h000000001 , "SLT -1,0", passed);
+		{BusA, BusB, ALUCtrl} = {32'hFFFFFFFF, 32'hFFFFFFFF, 4'd0}; #40; passTest({Zero, BusW}, 33'h0FFFFFFFF , "AND -1,-1", passed);
+		{BusA, BusB, ALUCtrl} = {32'hFFFFFFFF, 32'hCAFEBABE, 4'd0}; #40; passTest({Zero, BusW}, 33'h0CAFEBABE , "AND", passed);
+		{BusA, BusB, ALUCtrl} = {32'h00000000, 32'hFFFFFFFF, 4'd0}; #40; passTest({Zero, BusW}, 33'h100000000 , "AND 0,-1", passed);
+		{BusA, BusB, ALUCtrl} = {32'h12345678, 32'h87654321, 4'd0}; #40; passTest({Zero, BusW}, 33'h002244220 , "AND `", passed);
+		{BusA, BusB, ALUCtrl} = {32'hF0F0F0F0, 32'h0000FFFF, 4'd1}; #40; passTest({Zero, BusW}, 33'h0F0F0FFFF , "OR ", passed);
+		{BusA, BusB, ALUCtrl} = {32'h12345678, 32'h87654321, 4'd1}; #40; passTest({Zero, BusW}, 33'h097755779 , "OR ", passed);
+		{BusA, BusB, ALUCtrl} = {32'h12345678, 32'h00000002, 4'd3}; #40; passTest({Zero, BusW}, 33'h048D15E0 , "SLL 2", passed);
+		{BusA, BusB, ALUCtrl} = {32'h80000000, 32'h00000003, 4'd3}; #40; passTest({Zero, BusW}, 33'h00000000 , "SLL 3", passed);
+		{BusA, BusB, ALUCtrl} = {32'h00000001, 32'h00000003, 4'd4}; #40; passTest({Zero, BusW}, 33'h10000000 , "SRL 3", passed);
+		{BusA, BusB, ALUCtrl} = {32'h00001234, 32'h00000006, 4'd4}; #40; passTest({Zero, BusW}, 33'h00000048 , "SRL 6", passed);
 		
 		
+		
+		
+		//below was already provided in ALU test		
 		{BusA, BusB, ALUCtrl} = {32'hFFFF1234, 32'd6, 4'd4}; #40; passTest({Zero, BusW}, 33'h003FFFC48, "SRL 0xFFFF1234,6", passed);
 		{BusA, BusB, ALUCtrl} = {32'h00000000, 32'h00000000, 4'd8}; #40; passTest({Zero, BusW}, 33'h100000000, "ADDU 0,0", passed);
 		{BusA, BusB, ALUCtrl} = {32'h00000000, 32'hFFFFFFFF, 4'd8}; #40; passTest({Zero, BusW}, 33'h0FFFFFFFF, "ADDU 0,-1", passed);

@@ -1,3 +1,4 @@
+`timescale 1ns / 1ps
 module RegisterFile(BusA, BusB, BusW, RA, RB, RW, RegWr, Clk);
     
     output [31:0] BusA;
@@ -8,10 +9,12 @@ module RegisterFile(BusA, BusB, BusW, RA, RB, RW, RegWr, Clk);
     input [4:0] RA, RB, RW;
     input RegWr;
     input Clk;
-    reg [31:0] registers[31:1];
+    reg [31:0] registers[31:0];
+    
+    initial begin registers[0]=0; end 
      
-    assign #2 BusA = ((RA==0) ? 0 : registers[RA] );
-    assign #2 BusB = ((RB==0) ? 0 : registers[RB] );
+    assign #2 BusA = registers[RA];
+    assign #2 BusB = registers[RB];
      
     always @ (negedge Clk) begin
         if(RegWr)
