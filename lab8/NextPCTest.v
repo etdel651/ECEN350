@@ -80,7 +80,7 @@ module NextPCTest_v;
 		
 		{CurrentPC, JumpField, SignExtImm32, Branch, ALUZero, Jump} = {32'h8FFFFFFC, 26'h0000100, 32'hXXXXXXXX, 1'b0, 1'b0, 1'b1};
 		#10
-		passTest(NextPC, 32'h90000400, "Jump Address 2", passed);
+		passTest(NextPC, 32'h80000400, "Jump Address 2", passed);
 
 		{CurrentPC, JumpField, SignExtImm32, Branch, ALUZero, Jump} = {32'h00000010, 26'hXXXXXXX, 32'hFFFFFFFF, 1'b1, 1'b1, 1'b0};
 		#10
