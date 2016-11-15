@@ -1,0 +1,21 @@
+lab 2
+
+3a the notation is wierd, just use the address, no offset needed
+goodish
+100
+
+prelab 3
+3.1a forgot to shift left by 2
+-4
+3.1b need to keep first 4 bits, then use 2^26 bits and shift left by 2
+-4
+
+3.2b order of branch operation matters, while loop so condition needs to be checked first
+-2
+
+3.3 sw off by one, whatever
+
+3.4 obviously, but how? it xors bits , finds parity
+-5
+
+85
