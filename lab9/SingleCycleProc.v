@@ -76,12 +76,13 @@ module SingleCycleProc(CLK, Reset_L, startPC, dMemOut);
 	
 	//Register file
 	/*create the RegDst mux*/
-
+	assign #2 rw = RegDst ? rd : rt;
+	
 	RegisterFile registers(busA, busB, busW, rs, rt, rw, RegWrite, CLK);
 	
 	//Sign Extender
 	/*instantiate the sign extender*/
-	
+	SignExtender extender(signExtImm32, imm16, ~SignExtend);
 	//ALU
 	ALUControl ALUCont(ALUCtrl, ALUOp, func);
 	assign #2 UseShiftField = ((ALUOp == 4'b1111) && ((func == 6'b000000) || (func == 6'b000010) || (func == 6'b000011)));
@@ -93,5 +94,6 @@ module SingleCycleProc(CLK, Reset_L, startPC, dMemOut);
 	//Data Memory
 	DataMemory data(dMemOut, ALUResult, busB, MemRead, MemWrite, CLK);
 	/*create MemToReg mux */
+	assign #2 busW = MemToReg ? dMemOut : ALUResult;
 	
 endmodule
