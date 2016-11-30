@@ -68,6 +68,16 @@ module PipelinedControl(RegDst, ALUSrc, MemToReg, RegWrite, MemRead, MemWrite, B
 	always @ (Opcode or Bubble) begin
 		if(Bubble) begin
 			//Put your code here!
+			RegDst <= #2 0;
+                	ALUSrc <= #2 0;
+                	MemToReg <= #2 0;
+                	RegWrite <= #2 0;
+                	MemRead <= #2 0;
+                	MemWrite <= #2 0;
+                	Branch <= #2 0;
+                	Jump <= #2 0;
+                	SignExtend <= #2 1'b0;
+                	ALUOp <= #2 `AND;
 		end
 		else begin
 			case(Opcode)
@@ -83,8 +93,154 @@ module PipelinedControl(RegDst, ALUSrc, MemToReg, RegWrite, MemRead, MemWrite, B
                 	    	SignExtend <= #2 1'b0;
                 	    	ALUOp <= #2 `FUNC;
             		    end
-            /*add your code here. Reuse your code from lab 10 from the file Lab10_SingleCycleControl.v */
-           	            default: begin
+			   `LWOPCODE: begin
+				RegDst <= #2 0;
+				ALUSrc <= #2 1;
+				MemToReg <= #2 1;
+				RegWrite <= #2 1;
+				MemRead <= #2 1;
+				MemWrite <= #2 0;
+				Branch <= #2 0;
+				Jump <= #2 0;
+				SignExtend <= #2 1'b1;
+				ALUOp <= #2 `ADD;
+			    end
+			    `SWOPCODE: begin
+				RegDst <= #2 1'bx;
+				ALUSrc <= #2 1;
+				MemToReg <= #2 1'bx;
+				RegWrite <= #2 0;
+				MemRead <= #2 0;
+				MemWrite <= #2 1;
+				Branch <= #2 0;
+				Jump <= #2 0;
+				SignExtend <= #2 1'b1;
+				ALUOp <= #2 `ADD;
+			    end
+			    `BEQOPCODE: begin
+				RegDst <= #2 1'bx;
+				ALUSrc <= #2 0;
+				MemToReg <= #2 1'bx;
+				RegWrite <= #2 0;
+				MemRead <= #2 0;
+				MemWrite <= #2 0;
+				Branch <= #2 1;
+				Jump <= #2 0;
+				SignExtend <= #2 1'bx;
+				ALUOp <= #2 `SUB;
+			    end
+			    `JOPCODE: begin
+				RegDst <= #2 1'bx;
+				ALUSrc <= #2 0;
+				MemToReg <= #2 1'bx;
+				RegWrite <= #2 0;
+				MemRead <= #2 0;
+				MemWrite <= #2 0;
+				Branch <= #2 0;
+				Jump <= #2 1;
+				SignExtend <= #2 1'bx;
+				ALUOp <= #2 4'bxxxx;
+			    end
+			    `ORIOPCODE: begin
+				RegDst <= #2 0;
+				ALUSrc <= #2 1;
+				MemToReg <= #2 0;
+				RegWrite <= #2 1;
+				MemRead <= #2 0;
+				MemWrite <= #2 0;
+				Branch <= #2 0;
+				Jump <= #2 0;
+				SignExtend <= #2 1'b0;
+				ALUOp <= #2 `OR;
+			    end
+			    `ADDIOPCODE: begin
+				RegDst <= #2 0;
+				ALUSrc <= #2 1;
+				MemToReg <= #2 0;
+				RegWrite <= #2 1;
+				MemRead <= #2 0;
+				MemWrite <= #2 0;
+				Branch <= #2 0;
+				Jump <= #2 0;
+				SignExtend <= #2 1'b1;
+				ALUOp <= #2 `ADD;
+			     end
+			     `ADDIUOPCODE: begin
+				RegDst <= #2 0;
+				ALUSrc <= #2 1;
+				MemToReg <= #2 0;
+				RegWrite <= #2 1;
+				MemRead <= #2 0;
+				MemWrite <= #2 0;
+				Branch <= #2 0;
+				Jump <= #2 0;
+				SignExtend <= #2 1'b1;
+				ALUOp <= #2 `ADDU;
+			     end
+			     `ANDIOPCODE: begin
+			      	RegDst <= #2 0;
+				ALUSrc <= #2 1;
+				MemToReg <= #2 0;
+				RegWrite <= #2 1;
+				MemRead <= #2 0;
+				MemWrite <= #2 0;
+				Branch <= #2 0;
+				Jump <= #2 0;
+				SignExtend <= #2 1'b0;
+				ALUOp <= #2 `AND;
+			     end
+			     `LUIOPCODE: begin
+				RegDst <= #2 0;
+				ALUSrc <= #2 1;
+				MemToReg <= #2 0;
+				RegWrite <= #2 1;
+				MemRead <= #2 0;
+				MemWrite <= #2 0;
+				Branch <= #2 0;
+				Jump <= #2 0;
+				SignExtend <= #2 1'b0;
+				ALUOp <= #2 `LUI;
+			     end
+			     `SLTIOPCODE: begin
+				RegDst <= #2 0;
+				ALUSrc <= #2 1;
+				MemToReg <= #2 0;
+				RegWrite <= #2 1;
+				MemRead <= #2 0;
+				MemWrite <= #2 0;
+				Branch <= #2 0;
+				Jump <= #2 0;
+				SignExtend <= #2 1'b1;
+				ALUOp <= #2 `SLT;
+			     end
+			     `SLTIUOPCODE: begin
+				RegDst <= #2 0;
+				ALUSrc <= #2 1;
+				MemToReg <= #2 0;
+				RegWrite <= #2 1;
+				MemRead <= #2 0;
+				MemWrite <= #2 0;
+				Branch <= #2 0;
+				Jump <= #2 0;
+				SignExtend <= #2 1'b1;
+				ALUOp <= #2 `SLTU;
+			     end
+			     `XORIOPCODE: begin 
+				RegDst <= #2 0;
+				ALUSrc <= #2 1;
+				MemToReg <= #2 0;
+				RegWrite <= #2 1;
+				MemRead <= #2 0;
+				MemWrite <= #2 0;
+				Branch <= #2 0;
+				Jump <= #2 0;
+				SignExtend <= #2 1'b0;
+				ALUOp <= #2 `XOR;
+			   end
+
+
+
+			   default: begin
                 	    	RegDst <= #2 1'bx;
                 	    	ALUSrc <= #2 1'bx;
                 	    	MemToReg <= #2 1'bx;
@@ -95,8 +251,13 @@ module PipelinedControl(RegDst, ALUSrc, MemToReg, RegWrite, MemRead, MemWrite, B
                 	    	Jump <= #2 1'bx;
                 	    	SignExtend <= #2 1'bx;
                 	    	ALUOp <= #2 4'bxxxx;
-            		   end
+end
+
+
+
+ 
 			endcase
 		end
 	end
 endmodule
+
