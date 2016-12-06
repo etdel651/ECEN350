@@ -1,0 +1,15 @@
+lab 3
+
+1a address field is wrong, target address is wrong
+-10
+
+1b
+results here are suspicious, since you should have started at 0x0040_0000 not 0x0040_0020,
+
+90
+
+prelab 4
+
+good
+
+100
